@@ -1,0 +1,14 @@
+C:\Users\mjibran\Desktop\AllReports\Works\TagIT\TagIT\bin\Debug\TagIT.exe.config
+C:\Users\mjibran\Desktop\AllReports\Works\TagIT\TagIT\bin\Debug\TagIT.exe
+C:\Users\mjibran\Desktop\AllReports\Works\TagIT\TagIT\bin\Debug\TagIT.pdb
+C:\Users\mjibran\Desktop\AllReports\Works\TagIT\TagIT\obj\Debug\TagIT.csprojAssemblyReference.cache
+C:\Users\mjibran\Desktop\AllReports\Works\TagIT\TagIT\obj\Debug\TagIT.Form1.resources
+C:\Users\mjibran\Desktop\AllReports\Works\TagIT\TagIT\obj\Debug\TagIT.Properties.Resources.resources
+C:\Users\mjibran\Desktop\AllReports\Works\TagIT\TagIT\obj\Debug\TagIT.csproj.GenerateResource.cache
+C:\Users\mjibran\Desktop\AllReports\Works\TagIT\TagIT\obj\Debug\TagIT.csproj.CoreCompileInputs.cache
+C:\Users\mjibran\Desktop\AllReports\Works\TagIT\TagIT\obj\Debug\TagIT.exe
+C:\Users\mjibran\Desktop\AllReports\Works\TagIT\TagIT\obj\Debug\TagIT.pdb
+C:\Users\mjibran\Desktop\AllReports\Works\TagIT\TagIT\bin\Debug\HtmlAgilityPack.dll
+C:\Users\mjibran\Desktop\AllReports\Works\TagIT\TagIT\bin\Debug\HtmlAgilityPack.pdb
+C:\Users\mjibran\Desktop\AllReports\Works\TagIT\TagIT\bin\Debug\HtmlAgilityPack.xml
+C:\Users\mjibran\Desktop\AllReports\Works\TagIT\TagIT\obj\Debug\TagIT.csproj.CopyComplete
