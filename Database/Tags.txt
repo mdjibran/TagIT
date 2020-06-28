@@ -1,1 +1,2 @@
-﻿
+﻿Reach,documentreadyfunction,ajax,
+url,data,PARAMETERS,should,I,also,

@@ -5,10 +5,13 @@ using System.ComponentModel;
 using System.Data;
 using System.Diagnostics.PerformanceData;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TagIT.CustomClasses;
 
 namespace TagIT
 {
@@ -16,6 +19,8 @@ namespace TagIT
     {
         List<Control> formCtrls;
         List<FormControlLoc> ctrlLocsORG = new List<FormControlLoc>();
+        List<string> tags;
+        List<string> ignore;
 
         private Size formOriginalSize;
         
@@ -25,45 +30,71 @@ namespace TagIT
         }
 
         private void _btnStart_Click(object sender, EventArgs e)
-        {
+        {           
             webBrowser1.Navigate(_txtBoxURL.Text);
-            string txt = getText(webBrowser1.DocumentText);
+
+            getPageText(_txtBoxURL.Text);
+        }
+
+
+        private void getPageText(string url)
+        {
+            CleaningInput input = new CleaningInput();
+
+            string txt = input.getText(url);
             foreach (string wrd in txt.Split())
             {
-                if (wrd != "" && !(_LstNewWords.Items.Contains(wrd)))
+                string cleanWrd = cleanWord(wrd);
+                if (isNewWord(cleanWrd))
                 {
-                    _LstNewWords.Items.Add(wrd);
+                    _LstNewWords.Items.Add(cleanWrd);
                 }
             }
             SetCount();
-            
         }
-
-        private string getText(string html)
+       private bool isNewWord(string word)
         {
-            var htmlDoc = new HtmlAgilityPack.HtmlDocument();
-            htmlDoc.LoadHtml(html);
-
-            //var root = htmlDoc.DocumentNode.SelectSingleNode("//body");
-            var sb = new StringBuilder();
-            foreach(HtmlNode node in htmlDoc.DocumentNode.SelectNodes("//text()"))
+            if (word == "")
             {
-                string wrd = node.InnerText.Trim();
-                if (wrd.Trim() != "")
-                {
-                    sb.AppendLine(wrd);
-                }
+                return false;
             }
+            else if (_LstNewWords.Items.Contains(word))
+            {
+                return false;
+            }
+            else if(ignore.Contains(word))
+            {
+                if (!(_LstIgnore.Items.Contains(word)))
+                {
+                    _LstIgnore.Items.Add(word);
+                }
+                return false;
+            }
+            
+            else if (tags.Contains(word))
+            {
+                if (!(_LstTags.Items.Contains(word)))
+                {
+                    _LstTags.Items.Add(word);
+                }
+                return false;
+            }
+             
 
-            return sb.ToString();
+                     
+            return true;
         }
 
+
+        private string cleanWord(string word)
+        {
+            return Regex.Replace(word, "[^0-9a-zA-Z]+", "");
+        }
         private void SetCount()
         {
             _lblNewWordCount.Text = "Words: " + _LstNewWords.Items.Count.ToString();
             _lblIgnoreCount.Text = "Words: " + _LstIgnore.Items.Count.ToString();
             _lblTagsCount.Text = "Words: " + _LstTags.Items.Count.ToString();
-            //_LstNewWords.SetItemChecked(0, true);
             _lblWord.Text = _LstNewWords.Items[0].ToString();
         }
         private void resizeControls(Rectangle OriginalControlRect, Control control)
@@ -94,9 +125,38 @@ namespace TagIT
                 r = new Rectangle(item.Location.X, item.Location.Y, item.Width, item.Height);
                 ctrlLocsORG.Add(new FormControlLoc { _frmControl = item, _frmRectangle = r });
             }
+
+            PrepareThings();
         }
 
+        private void PrepareThings()
+        {
+            tags = new List<string>();
+            ignore = new List<string>();            
 
+            string[] oldTagLines = File.ReadAllLines(@"C:\Users\mjibran\Desktop\AllReports\Works\TagIT\TagIT\Database\tags.txt");
+            string[] ignoreLines = File.ReadAllLines(@"C:\Users\mjibran\Desktop\AllReports\Works\TagIT\TagIT\Database\Ignore.txt");
+
+            foreach (var line in oldTagLines)
+            {
+                foreach (var word in line.Split(','))
+                {
+                    tags.Add(word);
+                }
+            }
+
+            foreach (var line in ignoreLines)
+            {
+                foreach (var word in line.Split(','))
+                {
+                    ignore.Add(word);
+                }
+            }
+
+            _LstNewWords.Items.Clear();
+            _LstTags.Items.Clear();
+            _LstIgnore.Items.Clear();
+        }
         private void Form1_Resize(object sender, EventArgs e)
         {
             foreach (var item in ctrlLocsORG)
@@ -135,6 +195,40 @@ namespace TagIT
             }
 
             return formCtrls;
+        }
+
+        private void _btnSave_Click(object sender, EventArgs e)
+        {
+            string newtags = "", ignore = "";
+            foreach (var item in _LstTags.Items)
+            {
+                if(!tags.Contains(item.ToString()))
+                    newtags += item.ToString() + ",";        
+            }
+
+            foreach (var item in _LstIgnore.Items)
+            {
+                if (!ignore.Contains(item.ToString()))
+                    ignore += item.ToString() + ",";
+            }
+
+            using (StreamWriter file = new StreamWriter(@"C:\Users\mjibran\Desktop\AllReports\Works\TagIT\TagIT\Database\Ignore.txt", true))
+            {
+                file.WriteLine(ignore);
+            }
+
+            using (StreamWriter file = new StreamWriter(@"C:\Users\mjibran\Desktop\AllReports\Works\TagIT\TagIT\Database\tags.txt", true))
+            {
+                file.WriteLine(newtags);
+            }
+            ReDoThings();
+            MessageBox.Show("Done");
+        }
+
+        private void ReDoThings()
+        {
+            PrepareThings();
+            //getPageText(_txtBoxURL.Text);
         }
     }
 }

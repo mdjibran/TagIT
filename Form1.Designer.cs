@@ -36,10 +36,10 @@
             this._btnIgnore = new System.Windows.Forms.Button();
             this._btnSave = new System.Windows.Forms.Button();
             this._lblNewWordCount = new System.Windows.Forms.Label();
-            this._lblIgnoreCount = new System.Windows.Forms.Label();
+            this._LstNewWords = new System.Windows.Forms.ListBox();
             this._lblTagsCount = new System.Windows.Forms.Label();
             this._LstTags = new System.Windows.Forms.ListBox();
-            this._LstNewWords = new System.Windows.Forms.ListBox();
+            this._lblIgnoreCount = new System.Windows.Forms.Label();
             this._LstIgnore = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
@@ -53,7 +53,7 @@
             // 
             // _btnStart
             // 
-            this._btnStart.Location = new System.Drawing.Point(643, 22);
+            this._btnStart.Location = new System.Drawing.Point(643, 14);
             this._btnStart.Name = "_btnStart";
             this._btnStart.Size = new System.Drawing.Size(62, 23);
             this._btnStart.TabIndex = 1;
@@ -74,7 +74,7 @@
             // 
             this._lblWord.AutoSize = true;
             this._lblWord.Font = new System.Drawing.Font("Calibri", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this._lblWord.Location = new System.Drawing.Point(249, 110);
+            this._lblWord.Location = new System.Drawing.Point(86, 37);
             this._lblWord.Name = "_lblWord";
             this._lblWord.Size = new System.Drawing.Size(76, 31);
             this._lblWord.TabIndex = 3;
@@ -82,7 +82,7 @@
             // 
             // _btnTag
             // 
-            this._btnTag.Location = new System.Drawing.Point(210, 171);
+            this._btnTag.Location = new System.Drawing.Point(186, 175);
             this._btnTag.Name = "_btnTag";
             this._btnTag.Size = new System.Drawing.Size(75, 23);
             this._btnTag.TabIndex = 5;
@@ -92,7 +92,7 @@
             // 
             // _btnIgnore
             // 
-            this._btnIgnore.Location = new System.Drawing.Point(291, 171);
+            this._btnIgnore.Location = new System.Drawing.Point(267, 175);
             this._btnIgnore.Name = "_btnIgnore";
             this._btnIgnore.Size = new System.Drawing.Size(75, 23);
             this._btnIgnore.TabIndex = 6;
@@ -102,12 +102,13 @@
             // 
             // _btnSave
             // 
-            this._btnSave.Location = new System.Drawing.Point(372, 475);
+            this._btnSave.Location = new System.Drawing.Point(168, 299);
             this._btnSave.Name = "_btnSave";
-            this._btnSave.Size = new System.Drawing.Size(331, 23);
+            this._btnSave.Size = new System.Drawing.Size(192, 23);
             this._btnSave.TabIndex = 9;
-            this._btnSave.Text = "button1";
+            this._btnSave.Text = "Update Grammer";
             this._btnSave.UseVisualStyleBackColor = true;
+            this._btnSave.Click += new System.EventHandler(this._btnSave_Click);
             // 
             // _lblNewWordCount
             // 
@@ -118,14 +119,14 @@
             this._lblNewWordCount.TabIndex = 10;
             this._lblNewWordCount.Text = "Words: ";
             // 
-            // _lblIgnoreCount
+            // _LstNewWords
             // 
-            this._lblIgnoreCount.AutoSize = true;
-            this._lblIgnoreCount.Location = new System.Drawing.Point(544, 71);
-            this._lblIgnoreCount.Name = "_lblIgnoreCount";
-            this._lblIgnoreCount.Size = new System.Drawing.Size(57, 17);
-            this._lblIgnoreCount.TabIndex = 11;
-            this._lblIgnoreCount.Text = "Words: ";
+            this._LstNewWords.FormattingEnabled = true;
+            this._LstNewWords.ItemHeight = 16;
+            this._LstNewWords.Location = new System.Drawing.Point(372, 91);
+            this._LstNewWords.Name = "_LstNewWords";
+            this._LstNewWords.Size = new System.Drawing.Size(169, 404);
+            this._LstNewWords.TabIndex = 15;
             // 
             // _lblTagsCount
             // 
@@ -140,26 +141,19 @@
             // 
             this._LstTags.FormattingEnabled = true;
             this._LstTags.ItemHeight = 16;
-            this._LstTags.Items.AddRange(new object[] {
-            "f",
-            "f",
-            "f",
-            "f",
-            "f",
-            "f"});
             this._LstTags.Location = new System.Drawing.Point(12, 82);
             this._LstTags.Name = "_LstTags";
             this._LstTags.Size = new System.Drawing.Size(150, 420);
             this._LstTags.TabIndex = 14;
             // 
-            // _LstNewWords
+            // _lblIgnoreCount
             // 
-            this._LstNewWords.FormattingEnabled = true;
-            this._LstNewWords.ItemHeight = 16;
-            this._LstNewWords.Location = new System.Drawing.Point(372, 91);
-            this._LstNewWords.Name = "_LstNewWords";
-            this._LstNewWords.Size = new System.Drawing.Size(169, 372);
-            this._LstNewWords.TabIndex = 15;
+            this._lblIgnoreCount.AutoSize = true;
+            this._lblIgnoreCount.Location = new System.Drawing.Point(544, 71);
+            this._lblIgnoreCount.Name = "_lblIgnoreCount";
+            this._lblIgnoreCount.Size = new System.Drawing.Size(57, 17);
+            this._lblIgnoreCount.TabIndex = 11;
+            this._lblIgnoreCount.Text = "Words: ";
             // 
             // _LstIgnore
             // 
@@ -167,7 +161,7 @@
             this._LstIgnore.ItemHeight = 16;
             this._LstIgnore.Location = new System.Drawing.Point(547, 91);
             this._LstIgnore.Name = "_LstIgnore";
-            this._LstIgnore.Size = new System.Drawing.Size(158, 372);
+            this._LstIgnore.Size = new System.Drawing.Size(158, 404);
             this._LstIgnore.TabIndex = 16;
             // 
             // Form1
@@ -208,10 +202,10 @@
         private System.Windows.Forms.Button _btnIgnore;
         private System.Windows.Forms.Button _btnSave;
         private System.Windows.Forms.Label _lblNewWordCount;
-        private System.Windows.Forms.Label _lblIgnoreCount;
+        private System.Windows.Forms.ListBox _LstNewWords;
         private System.Windows.Forms.Label _lblTagsCount;
         private System.Windows.Forms.ListBox _LstTags;
-        private System.Windows.Forms.ListBox _LstNewWords;
+        private System.Windows.Forms.Label _lblIgnoreCount;
         private System.Windows.Forms.ListBox _LstIgnore;
     }
 }
