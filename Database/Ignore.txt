@@ -1,2 +1,3 @@
 ﻿Beyond,alerthi,
 Beyond,alerthi,NotificationaspxSendNotification,NO,
+Beyond,alerthi,NotificationaspxSendNotification,NO,POST,dataType,json,contentType,
