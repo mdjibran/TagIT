@@ -134,8 +134,8 @@ namespace TagIT
             tags = new List<string>();
             ignore = new List<string>();            
 
-            string[] oldTagLines = File.ReadAllLines(@"C:\Users\mjibran\Desktop\AllReports\Works\TagIT\TagIT\Database\tags.txt");
-            string[] ignoreLines = File.ReadAllLines(@"C:\Users\mjibran\Desktop\AllReports\Works\TagIT\TagIT\Database\Ignore.txt");
+            string[] oldTagLines = File.ReadAllLines("tags.txt");
+            string[] ignoreLines = File.ReadAllLines("Ignore.txt");
 
             foreach (var line in oldTagLines)
             {
@@ -212,23 +212,54 @@ namespace TagIT
                     ignore += item.ToString() + ",";
             }
 
-            using (StreamWriter file = new StreamWriter(@"C:\Users\mjibran\Desktop\AllReports\Works\TagIT\TagIT\Database\Ignore.txt", true))
+            using (StreamWriter file = new StreamWriter("Ignore.txt", true))
             {
                 file.WriteLine(ignore);
             }
 
-            using (StreamWriter file = new StreamWriter(@"C:\Users\mjibran\Desktop\AllReports\Works\TagIT\TagIT\Database\tags.txt", true))
+            using (StreamWriter file = new StreamWriter("tags.txt", true))
             {
                 file.WriteLine(newtags);
             }
             ReDoThings();
-            MessageBox.Show("Done");
         }
 
         private void ReDoThings()
         {
             PrepareThings();
-            //getPageText(_txtBoxURL.Text);
+            getPageText(_txtBoxURL.Text);
+        }
+
+        private void _btnSave_Click_1(object sender, EventArgs e)
+        {
+            string url = _txtBoxURL.Text.Trim();
+            string tagsList = "";
+            StringBuilder sb = new StringBuilder();
+            foreach (var item in _LstTags.Items)
+            {
+                sb.Append(item.ToString().Trim()+", ");
+                
+            }
+            tagsList = sb.ToString();
+            string line = url + " : " + tagsList;
+
+            try
+            {
+                using (StreamWriter file = new StreamWriter("db.csv", true))
+                {
+                    file.WriteLine(line);
+                }
+            }
+            catch(Exception ex)
+            {
+                ShowExceptionBox(ex);
+            }
+
+        }
+
+        private void ShowExceptionBox(Exception ex)
+        {
+            MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }
 }
