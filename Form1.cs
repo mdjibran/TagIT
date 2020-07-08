@@ -237,8 +237,7 @@ namespace TagIT
             StringBuilder sb = new StringBuilder();
             foreach (var item in _LstTags.Items)
             {
-                sb.Append(item.ToString().Trim()+", ");
-                
+                sb.Append(item.ToString().Trim()+", ");                
             }
             tagsList = sb.ToString();
             string line = url + " : " + tagsList;
@@ -249,6 +248,7 @@ namespace TagIT
                 {
                     file.WriteLine(line);
                 }
+                ShowSuccessBox();
             }
             catch(Exception ex)
             {
@@ -260,6 +260,11 @@ namespace TagIT
         private void ShowExceptionBox(Exception ex)
         {
             MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        private void ShowSuccessBox()
+        {
+            MessageBox.Show("Process Completed Successfully!", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }
