@@ -19,6 +19,23 @@ namespace TagIT.CustomClasses
 {
     class ResizeElements
     {
+        public List<FormControlLoc> ctrlLocsORG;
+        public Size formOriginalSize;
+        public List<Control> formCtrls;
+
+        public ResizeElements()
+        {
+            ctrlLocsORG = new List<FormControlLoc>();
+        }
+        public void addElement()
+        {
+
+        }
+
+        public void setOriginalFormSize()
+        {
+
+        }
         public List<Control> EnumerateChildren(Control root)
         {
             List<Control> formCtrls = new List<Control>();
@@ -49,5 +66,28 @@ namespace TagIT.CustomClasses
         }
 
 
+        public void SetOriginalSizes(Form form)
+        {
+            formOriginalSize = form.Size;
+            formCtrls = new List<Control>();
+            formCtrls = EnumerateChildren(form);
+            ctrlLocsORG = new List<FormControlLoc>();
+
+            Rectangle r;
+
+            foreach (var item in formCtrls)
+            {
+                r = new Rectangle(item.Location.X, item.Location.Y, item.Width, item.Height);
+                ctrlLocsORG.Add(new FormControlLoc { _frmControl = item, _frmRectangle = r });
+            }
+        }
+
+        public void ResizeAllElements(Form form)
+        {
+            foreach (var item in ctrlLocsORG)
+            {
+                resizeControls(item._frmRectangle, item._frmControl, form, formOriginalSize);
+            }
+        }
     }
 }

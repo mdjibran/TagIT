@@ -100,26 +100,11 @@ namespace TagIT
         
         private void Form1_Load(object sender, EventArgs e)
         {
-            StartResizing();
-
+            resizeEls.SetOriginalSizes(this);
             PrepareThings();
         }
 
-        private void StartResizing()
-        {
-            formOriginalSize = this.Size;
-            formCtrls = new List<Control>();
-            formCtrls = resizeEls.EnumerateChildren(this);
-            ctrlLocsORG = new List<FormControlLoc>();
 
-            Rectangle r;
-
-            foreach (var item in formCtrls)
-            {
-                r = new Rectangle(item.Location.X, item.Location.Y, item.Width, item.Height);
-                ctrlLocsORG.Add(new FormControlLoc { _frmControl = item, _frmRectangle = r });
-            }
-        }
 
         private void PrepareThings()
         {
@@ -151,10 +136,7 @@ namespace TagIT
         }
         private void Form1_Resize(object sender, EventArgs e)
         {
-            foreach (var item in ctrlLocsORG)
-            {
-               resizeEls.resizeControls(item._frmRectangle, item._frmControl, this, formOriginalSize);
-            }
+            resizeEls.ResizeAllElements(this);
         }
 
         private void _btnTag_Click(object sender, EventArgs e)

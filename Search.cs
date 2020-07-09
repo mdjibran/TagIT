@@ -18,40 +18,31 @@ namespace TagIT
             InitializeComponent();
         }
 
-        List<Control> formCtrls;
-        List<FormControlLoc> ctrlLocsORG = new List<FormControlLoc>();
-        List<string> tags;
-        List<string> ignore;
+ 
         ResizeElements resizeEls = new ResizeElements();
-        private Size formOriginalSize;
 
-
-        private void StartResizing()
-        {
-            formOriginalSize = this.Size;
-            formCtrls = new List<Control>();
-            formCtrls = resizeEls.EnumerateChildren(this);
-            ctrlLocsORG = new List<FormControlLoc>();
-
-            Rectangle r;
-
-            foreach (var item in formCtrls)
-            {
-                r = new Rectangle(item.Location.X, item.Location.Y, item.Width, item.Height);
-                ctrlLocsORG.Add(new FormControlLoc { _frmControl = item, _frmRectangle = r });
-            }
-        }
 
         private void Search_Load(object sender, EventArgs e)
-        {
-            StartResizing();
+        {            
+            resizeEls.SetOriginalSizes(this);
         }
 
         private void Search_Resize(object sender, EventArgs e)
         {
-            foreach (var item in ctrlLocsORG)
+            resizeEls.ResizeAllElements(this);
+        }
+
+        private void _lstShowLinks_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            _chkBoxLstSelectedTags.Items.Clear();
+            foreach (var item in _lstAllTags.SelectedItems.)
             {
-                resizeEls.resizeControls(item._frmRectangle, item._frmControl, this, formOriginalSize);
+                _chkBoxLstSelectedTags.Items.Add(item.ToString());
             }
         }
     }
