@@ -42,10 +42,11 @@
             System.Windows.Forms.ListViewItem listViewItem12 = new System.Windows.Forms.ListViewItem("sdhjhjsjcsjsjjsjcsdjdsjsjdkjsjshkjdhkjshdkjhskjdhskjhdkjshkjdhskjds");
             this._chkBoxLstSelectedTags = new System.Windows.Forms.CheckedListBox();
             this._lstAllTags = new System.Windows.Forms.ListView();
-            this.button1 = new System.Windows.Forms.Button();
+            this._btnSearch = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this._lstShowLinks = new System.Windows.Forms.ListBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // _chkBoxLstSelectedTags
@@ -94,16 +95,17 @@
             this._lstAllTags.TabIndex = 1;
             this._lstAllTags.UseCompatibleStateImageBehavior = false;
             this._lstAllTags.View = System.Windows.Forms.View.SmallIcon;
-            this._lstAllTags.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
+            this._lstAllTags.ItemChecked += new System.Windows.Forms.ItemCheckedEventHandler(this._lstAllTags_ItemChecked);
             // 
-            // button1
+            // _btnSearch
             // 
-            this.button1.Location = new System.Drawing.Point(680, 417);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(108, 23);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
+            this._btnSearch.Location = new System.Drawing.Point(680, 417);
+            this._btnSearch.Name = "_btnSearch";
+            this._btnSearch.Size = new System.Drawing.Size(108, 23);
+            this._btnSearch.TabIndex = 2;
+            this._btnSearch.Text = "Search";
+            this._btnSearch.UseVisualStyleBackColor = true;
+            this._btnSearch.Click += new System.EventHandler(this._btnSearch_Click);
             // 
             // label1
             // 
@@ -127,22 +129,32 @@
             // 
             this._lstShowLinks.FormattingEnabled = true;
             this._lstShowLinks.ItemHeight = 16;
-            this._lstShowLinks.Location = new System.Drawing.Point(207, 142);
+            this._lstShowLinks.Location = new System.Drawing.Point(207, 46);
             this._lstShowLinks.Name = "_lstShowLinks";
-            this._lstShowLinks.Size = new System.Drawing.Size(581, 260);
+            this._lstShowLinks.Size = new System.Drawing.Size(581, 356);
             this._lstShowLinks.TabIndex = 5;
             this._lstShowLinks.Visible = false;
-            this._lstShowLinks.SelectedIndexChanged += new System.EventHandler(this._lstShowLinks_SelectedIndexChanged);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(519, 417);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 6;
+            this.button1.Text = "Open All Links";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // Search
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this._lstShowLinks);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this._btnSearch);
             this.Controls.Add(this._lstAllTags);
             this.Controls.Add(this._chkBoxLstSelectedTags);
             this.Name = "Search";
@@ -158,9 +170,10 @@
 
         private System.Windows.Forms.CheckedListBox _chkBoxLstSelectedTags;
         private System.Windows.Forms.ListView _lstAllTags;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button _btnSearch;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ListBox _lstShowLinks;
+        private System.Windows.Forms.Button button1;
     }
 }

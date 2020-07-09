@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -32,18 +33,31 @@ namespace TagIT
             resizeEls.ResizeAllElements(this);
         }
 
-        private void _lstShowLinks_SelectedIndexChanged(object sender, EventArgs e)
+        private void _btnSearch_Click(object sender, EventArgs e)
         {
-
+            
         }
 
-        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        private void _lstAllTags_ItemChecked(object sender, ItemCheckedEventArgs e)
         {
             _chkBoxLstSelectedTags.Items.Clear();
-            foreach (var item in _lstAllTags.SelectedItems.)
+            foreach (ListViewItem item in _lstAllTags.CheckedItems)
             {
-                _chkBoxLstSelectedTags.Items.Add(item.ToString());
+                string tag = item.Text;
+                if (!_chkBoxLstSelectedTags.Items.Contains(tag))
+                {
+                    _chkBoxLstSelectedTags.Items.Add(item.Text);
+                }
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            foreach (string link in _lstShowLinks.Items)
+            {
+                Process.Start(link);
+            }
+            
         }
     }
 }
