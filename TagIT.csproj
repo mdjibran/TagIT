@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CustomClasses\CleaningInput.cs" />
+    <Compile Include="CustomClasses\ResizeElements.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>

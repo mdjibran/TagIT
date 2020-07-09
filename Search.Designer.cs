@@ -28,18 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("1");
-            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem("11");
-            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem("2");
-            System.Windows.Forms.ListViewItem listViewItem4 = new System.Windows.Forms.ListViewItem("3");
-            System.Windows.Forms.ListViewItem listViewItem5 = new System.Windows.Forms.ListViewItem("343");
-            System.Windows.Forms.ListViewItem listViewItem6 = new System.Windows.Forms.ListViewItem("4");
-            System.Windows.Forms.ListViewItem listViewItem7 = new System.Windows.Forms.ListViewItem("5");
-            System.Windows.Forms.ListViewItem listViewItem8 = new System.Windows.Forms.ListViewItem("6");
-            System.Windows.Forms.ListViewItem listViewItem9 = new System.Windows.Forms.ListViewItem("7");
-            System.Windows.Forms.ListViewItem listViewItem10 = new System.Windows.Forms.ListViewItem("8");
-            System.Windows.Forms.ListViewItem listViewItem11 = new System.Windows.Forms.ListViewItem("9");
-            System.Windows.Forms.ListViewItem listViewItem12 = new System.Windows.Forms.ListViewItem("sdhjhjsjcsjsjjsjcsdjdsjsjdkjsjshkjdhkjshdkjhskjdhskjhdkjshkjdhskjds");
+            System.Windows.Forms.ListViewItem listViewItem25 = new System.Windows.Forms.ListViewItem("1");
+            System.Windows.Forms.ListViewItem listViewItem26 = new System.Windows.Forms.ListViewItem("11");
+            System.Windows.Forms.ListViewItem listViewItem27 = new System.Windows.Forms.ListViewItem("2");
+            System.Windows.Forms.ListViewItem listViewItem28 = new System.Windows.Forms.ListViewItem("3");
+            System.Windows.Forms.ListViewItem listViewItem29 = new System.Windows.Forms.ListViewItem("343");
+            System.Windows.Forms.ListViewItem listViewItem30 = new System.Windows.Forms.ListViewItem("4");
+            System.Windows.Forms.ListViewItem listViewItem31 = new System.Windows.Forms.ListViewItem("5");
+            System.Windows.Forms.ListViewItem listViewItem32 = new System.Windows.Forms.ListViewItem("6");
+            System.Windows.Forms.ListViewItem listViewItem33 = new System.Windows.Forms.ListViewItem("7");
+            System.Windows.Forms.ListViewItem listViewItem34 = new System.Windows.Forms.ListViewItem("8");
+            System.Windows.Forms.ListViewItem listViewItem35 = new System.Windows.Forms.ListViewItem("9");
+            System.Windows.Forms.ListViewItem listViewItem36 = new System.Windows.Forms.ListViewItem("sdhjhjsjcsjsjjsjcsdjdsjsjdkjsjshkjdhkjshdkjhskjdhskjhdkjshkjdhskjds");
             this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
             this.listView1 = new System.Windows.Forms.ListView();
             this.button1 = new System.Windows.Forms.Button();
@@ -59,31 +59,31 @@
             this.listView1.CheckBoxes = true;
             this.listView1.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listView1.HideSelection = false;
-            listViewItem1.StateImageIndex = 0;
-            listViewItem2.StateImageIndex = 0;
-            listViewItem3.StateImageIndex = 0;
-            listViewItem4.StateImageIndex = 0;
-            listViewItem5.StateImageIndex = 0;
-            listViewItem6.StateImageIndex = 0;
-            listViewItem7.StateImageIndex = 0;
-            listViewItem8.StateImageIndex = 0;
-            listViewItem9.StateImageIndex = 0;
-            listViewItem10.StateImageIndex = 0;
-            listViewItem11.StateImageIndex = 0;
-            listViewItem12.StateImageIndex = 0;
+            listViewItem25.StateImageIndex = 0;
+            listViewItem26.StateImageIndex = 0;
+            listViewItem27.StateImageIndex = 0;
+            listViewItem28.StateImageIndex = 0;
+            listViewItem29.StateImageIndex = 0;
+            listViewItem30.StateImageIndex = 0;
+            listViewItem31.StateImageIndex = 0;
+            listViewItem32.StateImageIndex = 0;
+            listViewItem33.StateImageIndex = 0;
+            listViewItem34.StateImageIndex = 0;
+            listViewItem35.StateImageIndex = 0;
+            listViewItem36.StateImageIndex = 0;
             this.listView1.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1,
-            listViewItem2,
-            listViewItem3,
-            listViewItem4,
-            listViewItem5,
-            listViewItem6,
-            listViewItem7,
-            listViewItem8,
-            listViewItem9,
-            listViewItem10,
-            listViewItem11,
-            listViewItem12});
+            listViewItem25,
+            listViewItem26,
+            listViewItem27,
+            listViewItem28,
+            listViewItem29,
+            listViewItem30,
+            listViewItem31,
+            listViewItem32,
+            listViewItem33,
+            listViewItem34,
+            listViewItem35,
+            listViewItem36});
             this.listView1.Location = new System.Drawing.Point(207, 12);
             this.listView1.Name = "listView1";
             this.listView1.Size = new System.Drawing.Size(581, 395);
@@ -111,6 +111,8 @@
             this.Controls.Add(this.checkedListBox1);
             this.Name = "Search";
             this.Text = "Search";
+            this.Load += new System.EventHandler(this.Search_Load);
+            this.Resize += new System.EventHandler(this.Search_Resize);
             this.ResumeLayout(false);
 
         }

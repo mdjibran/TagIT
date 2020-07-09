@@ -21,7 +21,7 @@ namespace TagIT
         List<FormControlLoc> ctrlLocsORG = new List<FormControlLoc>();
         List<string> tags;
         List<string> ignore;
-
+        ResizeElements resizeEls = new ResizeElements();
         private Size formOriginalSize;
         
         public Form1()
@@ -97,25 +97,19 @@ namespace TagIT
             _lblTagsCount.Text = "Words: " + _LstTags.Items.Count.ToString();
             _lblWord.Text = _LstNewWords.Items[0].ToString();
         }
-        private void resizeControls(Rectangle OriginalControlRect, Control control)
+        
+        private void Form1_Load(object sender, EventArgs e)
         {
-            float xRatio = (float)this.Width / (float)formOriginalSize.Width;
-            float yRatio = (float)this.Height / (float)formOriginalSize.Height;
+            StartResizing();
 
-            int newX = (int)(OriginalControlRect.X * xRatio);
-            int newY = (int)(OriginalControlRect.Y * yRatio);
-            int newWidth = (int)(OriginalControlRect.Width * xRatio);
-            int newHeight = (int)(OriginalControlRect.Height * yRatio);
-
-            control.Size = new Size(newWidth, newHeight);
-            control.Location = new Point(newX, newY);
+            PrepareThings();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void StartResizing()
         {
             formOriginalSize = this.Size;
             formCtrls = new List<Control>();
-            formCtrls = EnumerateChildren(this);
+            formCtrls = resizeEls.EnumerateChildren(this);
             ctrlLocsORG = new List<FormControlLoc>();
 
             Rectangle r;
@@ -125,8 +119,6 @@ namespace TagIT
                 r = new Rectangle(item.Location.X, item.Location.Y, item.Width, item.Height);
                 ctrlLocsORG.Add(new FormControlLoc { _frmControl = item, _frmRectangle = r });
             }
-
-            PrepareThings();
         }
 
         private void PrepareThings()
@@ -161,7 +153,7 @@ namespace TagIT
         {
             foreach (var item in ctrlLocsORG)
             {
-                resizeControls(item._frmRectangle, item._frmControl);
+               resizeEls.resizeControls(item._frmRectangle, item._frmControl, this, formOriginalSize);
             }
         }
 
@@ -181,21 +173,6 @@ namespace TagIT
             SetCount();
         }
 
-
-        public List<Control> EnumerateChildren(Control root)
-        {
-            List<Control> formCtrls = new List<Control>();
-            foreach (Control control in root.Controls)
-            {
-                formCtrls.Add(control);
-                if (control.Controls != null)
-                {
-                    EnumerateChildren(control);
-                }
-            }
-
-            return formCtrls;
-        }
 
         private void _btnSave_Click(object sender, EventArgs e)
         {
